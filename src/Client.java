@@ -25,7 +25,18 @@ public class Client extends Thread {
             while (true) {
                 String userInput = scanner.nextLine();
                 out.println(userInput);
+
+                if (userInput.equals("/quit")) {
+                    clientSocket.close();
+                    out.close();
+                    in.close();
+                    inHandler.interrupt();
+                    break;
+                } else if (userInput.equals("/changeusername")) {
+                    System.out.println("Enter a new Username: ");
+                }
             }
+
         } catch (Exception e){
             e.printStackTrace();
         }

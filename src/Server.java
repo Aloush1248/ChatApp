@@ -8,8 +8,7 @@ public class Server extends Thread {
 
     @Override
     public void run() {
-        try {
-            ServerSocket serverSocket = new ServerSocket(PORT);
+        try (ServerSocket serverSocket = new ServerSocket(PORT);) {
             System.out.println("Server is running and waiting for connections...");
 
             // accept connections
@@ -90,7 +89,6 @@ public class Server extends Thread {
         // sends messages to clients
         public void sendMessage(String message) {
             out.println(message);
-            out.println("Type a message");
         }
     }
 
